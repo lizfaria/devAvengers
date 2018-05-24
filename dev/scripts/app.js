@@ -42,7 +42,7 @@ changeSearchState(value) {
         console.log(res);
 
         this.setState({
-          comics: res.data.data.results
+          comics: res.data.data.results 
         })
       })
   }
