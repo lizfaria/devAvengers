@@ -3,7 +3,8 @@ import React from 'react';
 class SearchBar extends React.Component {
     constructor() {
         super();
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitByComic = this.handleSubmitByComic.bind(this);
+        this.handleSubmitByCharacter = this.handleSubmitByCharacter.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -12,17 +13,29 @@ class SearchBar extends React.Component {
         this.props.changeSearchState(e.target.value);
     }
 
-    handleSubmit(e){
+    handleSubmitByComic(e){
         e.preventDefault();
-        this.props.searchComic();
+        this.props.searchByComic();
+    }
+
+    handleSubmitByCharacter(e) {
+        e.preventDefault();
+        this.props.searchByCharacter();
     }
 
     render () {
         return (
-            <form action="" onSubmit={this.handleSubmit}>
-                <input type="text" onChange={this.handleChange} value={this.props.search}/>
-                <input type="submit" value="Search"/>
-            </form>
+           <div>
+                <form action="" onSubmit={this.handleSubmitByComic}>
+                    <input type="text" onChange={this.handleChange} value={this.props.search}/>
+                    <input type="submit" value="Search by Comic"/>
+                </form>
+            
+                <form action="" onSubmit={this.handleSubmitByCharacter}>
+                    <input type="text" onChange={this.handleChange} value={this.props.search} />
+                    <input type="submit" value="Search By Character" />
+                </form>
+           </div>
         )
     }
 }
