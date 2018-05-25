@@ -4,6 +4,20 @@ import axios from 'axios';
 import CryptoJS from "crypto-js";
 import ComicResults from './ComicResults';
 import SearchBar from './SearchBar';
+import MyCollection from './MyCollection';
+import firebase from 'firebase';
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyB0OyrwC2Tvi-SxHX3LGJm0Iw7xuJONaNY",
+  authDomain: "devavengers-f4922.firebaseapp.com",
+  databaseURL: "https://devavengers-f4922.firebaseio.com",
+  projectId: "devavengers-f4922",
+  storageBucket: "devavengers-f4922.appspot.com",
+  messagingSenderId: "886807267915"
+};
+firebase.initializeApp(config);
+
 
 const PUBLIC_KEY = "a7cf3b7902087aaf6031f05fab9fb738";
 const PRIV_KEY = "442fd6fb50eb89717021a29e0c676e785f2687a5";
