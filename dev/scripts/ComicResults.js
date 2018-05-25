@@ -6,7 +6,15 @@ import ComicImage from './ComicImage';
 class ComicResults extends React.Component{
     constructor(){
         super();
+        this.state ({
+            collection: []
+        })
     }    
+
+    handleClick() {
+        const dbRef = firebase.database().ref('collection');
+        dbRef.push()
+    }
 
     getComic() {
            return this.props.comics.map((comic, i) => {
@@ -26,7 +34,7 @@ class ComicResults extends React.Component{
                                 writers= {item.name} key={n}/>
                             )
                         })}
-
+                        <button onClick={this.handleClick}>Add Comic to My Collection</button>
                     </div>
                 )
             })
@@ -37,6 +45,7 @@ class ComicResults extends React.Component{
             <div>
                 {this.getComic()}
                 
+
             </div>
         )
     }
