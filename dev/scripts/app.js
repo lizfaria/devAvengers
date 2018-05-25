@@ -7,16 +7,17 @@ import SearchBar from './SearchBar';
 import MyCollection from './MyCollection';
 import firebase from 'firebase';
 
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyB0OyrwC2Tvi-SxHX3LGJm0Iw7xuJONaNY",
-  authDomain: "devavengers-f4922.firebaseapp.com",
-  databaseURL: "https://devavengers-f4922.firebaseio.com",
-  projectId: "devavengers-f4922",
-  storageBucket: "devavengers-f4922.appspot.com",
-  messagingSenderId: "886807267915"
-};
-firebase.initializeApp(config);
+// // Initialize Firebase
+// var config = {
+//   apiKey: "AIzaSyB0OyrwC2Tvi-SxHX3LGJm0Iw7xuJONaNY",
+//   authDomain: "devavengers-f4922.firebaseapp.com",
+//   databaseURL: "https://devavengers-f4922.firebaseio.com",
+//   projectId: "devavengers-f4922",
+//   storageBucket: "devavengers-f4922.appspot.com",
+//   messagingSenderId: "886807267915"
+// };
+// firebase.initializeApp(config);
+
 
 
 const PUBLIC_KEY = "a7cf3b7902087aaf6031f05fab9fb738";
@@ -56,7 +57,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        // console.log(res);
+        console.log(res);
 
         this.setState({
           comics: res.data.data.results
@@ -76,7 +77,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         res.data.data.results.map((result) =>{
           // console.log(characterId);
           this.setState({
@@ -91,7 +92,7 @@ class App extends React.Component {
           // characterId: characterId,
         }
         }).then(res => {
-          console.log(res);
+          // console.log(res);
           this.setState({
             comics: res.data.data.results
           })
@@ -111,6 +112,9 @@ class App extends React.Component {
         <ComicResults 
           comics={this.state.comics} 
           search={this.state.search} 
+        />
+        <MyCollection
+
         />
       </div>
     );
