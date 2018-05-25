@@ -2,18 +2,30 @@ import React from 'react';
 import ComicTitle from './ComicTitle';
 import ComicWriters from './ComicWriters';
 import ComicImage from './ComicImage';
+import firebase from 'firebase';
 
-class ComicResults extends React.Component{
+class ComicResults extends React.Component{ 
     constructor(){
         super();
-        this.state ({
-            collection: []
-        })
+        // this.state = {
+        //     // collection: [],
+        //     id: ''
+        // };
+        this.handleClick = this.handleClick.bind(this);
+        this.getComic = this.getComic.bind(this);
     }    
 
-    handleClick() {
+    handleClick(e) {
+
+        // this.setState ({
+        //     id: e.target.value
+        // })
+        const collectionItem = e.target.value;
+        const collection = {
+            id: collectionItem
+        };
         const dbRef = firebase.database().ref('collection');
-        dbRef.push()
+        dbRef.push(collection)
     }
 
     getComic() {
@@ -34,7 +46,7 @@ class ComicResults extends React.Component{
                                 writers= {item.name} key={n}/>
                             )
                         })}
-                        <button onClick={this.handleClick}>Add Comic to My Collection</button>
+                        <button onClick={this.handleClick} value={comic.id}>Add Comic to My Collection</button>
                     </div>
                 )
             })
