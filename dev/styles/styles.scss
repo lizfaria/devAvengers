@@ -1,0 +1,69 @@
+@import 'setup.scss';
+// @import 'components/typography.scss';
+
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+    background: #fafa;
+}
+
+.mainPage {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(../../assets/Deadpool-Wallpaper-1920x1080.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    // margin: 0 auto;
+    
+}
+
+.comicForm {
+    text-align: center;
+    padding-top: 40%;
+}
+
+.characterForm {
+    text-align: center;
+    margin-top: 2%;
+}
+
+input.homeSearch {
+    width: 250px;
+    height: 30px;
+    margin-right: 1%;
+
+    border: none;
+}
+
+input.homeSubmit {
+    width: 150px;
+    height: 30px;
+
+    border: none;
+}
+
+// COMIC RESULTS STYLES
+
+.comicContainer {
+    width: calc((94% / 4));
+    margin-right: 2%;
+    min-height: 520px;
+    padding-top: 20px;
+    float: left;
+    margin-bottom: 3%;
+    background: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+ .comicContainer:nth-of-type(4n+4) {
+     margin-right: 0;
+}
+
+
+
+
+img.comicCover {
+    width: 250px;
+    height: 387px;
+    object-fit: cover;
+}

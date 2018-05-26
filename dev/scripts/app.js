@@ -53,7 +53,7 @@ class App extends React.Component {
           apikey: "a7cf3b7902087aaf6031f05fab9fb738",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           titleStartsWith: this.state.search,
-          limit: 10
+          limit: 16
         }
       })
       .then(res => {
@@ -103,16 +103,22 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar
-          changeSearchState={this.changeSearchState}
-          search={this.state.search}
-          searchByComic={this.searchByComic}
-          searchByCharacter={this.searchByCharacter}
-        />
-        <ComicResults 
-          comics={this.state.comics} 
-          search={this.state.search} 
-        />
+        <div className="mainPage">
+          <SearchBar
+            changeSearchState={this.changeSearchState}
+            search={this.state.search}
+            searchByComic={this.searchByComic}
+            searchByCharacter={this.searchByCharacter}
+          />
+        </div>
+        <div className="comicResults">
+          <div className="wrapper clearfix">
+            <ComicResults 
+              comics={this.state.comics} 
+              search={this.state.search} 
+            />
+          </div>
+        </div>
         <MyCollection
 
         />

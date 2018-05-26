@@ -31,12 +31,12 @@ class ComicResults extends React.Component{
     getComic() {
            return this.props.comics.map((comic, i) => {
                 return (
-                    <div key={comic.id}>
+                    <div key={comic.id} className="comicContainer">
                         <ComicImage 
                         image= {`${comic.thumbnail.path}.${comic.thumbnail.extension}`} />
                         <ComicTitle 
                         title= {comic.title} />
-                        {comic.creators.items.filter((item) => {
+                        {/* {comic.creators.items.filter((item) => {
                             return (
                                 item.role === 'writer'
                             )
@@ -45,7 +45,7 @@ class ComicResults extends React.Component{
                                 <ComicWriters 
                                 writers= {item.name} key={n}/>
                             )
-                        })}
+                        })} */}
                         <button onClick={this.handleClick} value={comic.id}>Add Comic to My Collection</button>
                     </div>
                 )
@@ -56,8 +56,6 @@ class ComicResults extends React.Component{
         return(
             <div>
                 {this.getComic()}
-                
-
             </div>
         )
     }
