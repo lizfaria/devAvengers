@@ -30,11 +30,17 @@ class App extends React.Component {
     this.state = {
       search: "",
       comics: [],
-      characterId: ''
+      characterId: '',
+      loggedIn: false
     };
     this.changeSearchState = this.changeSearchState.bind(this);
     this.searchByComic = this.searchByComic.bind(this);
     this.searchByCharacter = this.searchByCharacter.bind(this);
+    this.logOut = this.logOut.bind(this);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ userLog: "loggedIn" })
+    });
   }
 
   changeSearchState(value) {
@@ -44,6 +50,41 @@ class App extends React.Component {
     // console.log(value);
   }
 
+  componentDidMount() {
+    this.dbRef = firebase.database().ref('collection');
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user !== null) {
+        this.dbRef.on('value', (snapshot) => {
+          console.log(snapshot.val());
+        });
+        this.setState({
+          loggedIn: true
+        })
+      } else {
+        console.log('user logged out')
+        this.setState({
+          loggedIn: false
+        })
+      }
+    });
+  }
+  loginWithGoogle() {
+    console.log("clicked the button")
+    const provider = new firebase.auth.GoogleAuthProvider
+
+    firebase.auth().signInWithPopup(provider)
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  logOut() {
+    firebase.auth().signOut();
+    this.dbRef.off('value');
+    console.log('signout')
+  }
   searchByComic() {
     //API call for seach by comic
     axios
@@ -103,6 +144,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div class="UserStatus">
+          {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
+          {/* the and statement only continues on to the second statement if the first thing is true */}
+          {this.state.loggedIn === true ? <button onClick={this.logOut}>log out</button> : null}
+          {/* {this.state.loggedIn === true && <myCollection />} */}
+        </div>
+
+      
         <SearchBar
           changeSearchState={this.changeSearchState}
           search={this.state.search}
