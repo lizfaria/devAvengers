@@ -20,8 +20,10 @@ import firebase from 'firebase';
 
 
 
-const PUBLIC_KEY = "a7cf3b7902087aaf6031f05fab9fb738";
-const PRIV_KEY = "442fd6fb50eb89717021a29e0c676e785f2687a5";
+// const PUBLIC_KEY = "a7cf3b7902087aaf6031f05fab9fb738";
+// const PRIV_KEY = "442fd6fb50eb89717021a29e0c676e785f2687a5";
+const PUBLIC_KEY = "aaacd28ae7e7c4de56a90d65adee65a8";
+const PRIV_KEY = "8b0a41f0c34d95256e4336a09ed5d4e830173846";
 const ts = new Date().getTime();
 
 class App extends React.Component {
@@ -91,7 +93,7 @@ class App extends React.Component {
       .get("http://gateway.marvel.com/v1/public/comics", {
         params: {
           ts: ts,
-          apikey: "a7cf3b7902087aaf6031f05fab9fb738",
+          apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           titleStartsWith: this.state.search,
           limit: 16
@@ -112,7 +114,7 @@ class App extends React.Component {
       .get("http://gateway.marvel.com/v1/public/characters", {
         params: {
           ts: ts,
-          apikey: "a7cf3b7902087aaf6031f05fab9fb738",
+          apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           name: this.state.search,
         }
@@ -128,7 +130,7 @@ class App extends React.Component {
         axios.get(`http://gateway.marvel.com/v1/public/characters/${this.state.characterId}/comics`, {
         params: {
           ts: ts,
-          apikey: "a7cf3b7902087aaf6031f05fab9fb738",
+          apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           // characterId: characterId,
         }
@@ -145,12 +147,12 @@ class App extends React.Component {
     return (
       <div>
         <div className="mainPage">
-          <div class="UserStatus">
-            {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
-            {/* the and statement only continues on to the second statement if the first thing is true */}
-            {this.state.loggedIn === true ? <button onClick={this.logOut}>log out</button> : null}
-            {/* {this.state.loggedIn === true && <myCollection />} */}
-          </div>
+        <div class="UserStatus">
+          {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Login with Google</button>}
+          {/* the and statement only continues on to the second statement if the first thing is true */}
+          {this.state.loggedIn === true ? <button onClick={this.logOut}>log out</button> : null}
+          {/* {this.state.loggedIn === true && <myCollection />} */}
+        </div>
           <SearchBar
             changeSearchState={this.changeSearchState}
             search={this.state.search}
