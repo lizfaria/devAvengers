@@ -13,6 +13,7 @@ class ComicResults extends React.Component{
         // };
         this.handleClick = this.handleClick.bind(this);
         this.getComic = this.getComic.bind(this);
+        this.hide = this.hide.bind(this);
     }    
 
     handleClick(e) {
@@ -24,8 +25,23 @@ class ComicResults extends React.Component{
         const collection = {
             id: collectionItem
         };
-        const dbRef = firebase.database().ref('collection');
-        dbRef.push(collection)
+        
+        if (firebase.auth().currentUser != null) {
+            const user = firebase.auth().currentUser;
+            const dbRef = firebase.database().ref('collection');
+            dbRef.push(collection)
+
+            const buttonSave = document.getElementById(`${comic.id}`);
+            console.log(buttonSave)
+            buttonSave.classList.add("saved");
+            buttonSave.innerHTML = "Saved!";
+        } else {
+            this.setState({ mustLogin: true })
+        }
+    }
+
+    hide() {
+        this.setState({ mustLogin: false })
     }
 
     getComic() {
