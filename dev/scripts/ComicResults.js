@@ -31,7 +31,7 @@ class ComicResults extends React.Component{
             const dbRef = firebase.database().ref('collection');
             dbRef.push(collection)
 
-            const buttonSave = document.getElementById(`${comic.id}`);
+            const buttonSave = document.getElementById(`${collection.id}`);
             console.log(buttonSave)
             buttonSave.classList.add("saved");
             buttonSave.innerHTML = "Saved!";
