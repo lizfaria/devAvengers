@@ -1,0 +1,61 @@
+nav {
+    position:fixed;
+    width:100%;
+    padding:30px;
+    border: 1px solid white;
+}
+
+.logo-container{
+    float:left;
+    position:relative;
+    width:300px;
+    margin:0;
+    text-align:center;
+    #bnw{
+    position: absolute;
+    top:0;
+    left:0;
+    }
+    #colored{
+    position: absolute;
+    top:40vh;
+    left:50px;
+    clip-path:polygon(0 0,0.01% 0,0.01% 100%,0 100%);
+    }    
+}
+.userStatus {
+    position: relative;
+    float:right;
+
+    button {
+    width:90px;
+    height:90px;
+    background-color:smokewhite;
+    border-radius: 50%;
+    }
+    img {
+        max-width:100%;
+        width: 100%;
+    }
+}
+
+.bookmark-container {
+    width:102px;
+    height: 100px;
+    float:right;
+    a {
+        text-decoration: none;
+        width:100%;
+    }
+    img {
+        max-width: 100%;
+        width:100%;
+        position:relative;
+        top:-6px;
+    }
+
+}
+
+.search-bar-container{
+clear:both;
+}
