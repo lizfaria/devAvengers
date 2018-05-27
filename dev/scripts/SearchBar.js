@@ -25,17 +25,24 @@ class SearchBar extends React.Component {
 
     render () {
         return (
-           <div>
+            <div className="search-bar-container">
                 <form action="" onSubmit={this.handleSubmitByComic} className="comicForm">
-                    <input type="text" onChange={this.handleChange} value={this.props.search} placeholder="Search by Comic" className="homeSearch"/>
+                    {/* <label htmlFor="search by comic"></label> */}
+                    <input type="text" onChange={this.handleChange} value={this.props.search} placeholder="Search by Comic" className="homeSearch" />
                     <input type="submit" value="Search" className="homeSubmit" />
+
+                    {/* <input type="radio" name="search-option" value="by comic" /> 
+                    <label htmlFor="search by comic">by comic</label>
+                    
+                    <input type="radio" name="search-option" value="by character"/> 
+                    <label htmlFor="search by character"> by character</label> */}
                 </form>
-            
+
                 <form action="" onSubmit={this.handleSubmitByCharacter} className="characterForm">
                     <input type="text" onChange={this.handleChange} value={this.props.search} placeholder="Search by Character" className="homeSearch" />
                     <input type="submit" value="Search" className="homeSubmit" />
                 </form>
-           </div>
+            </div>
         )
     }
 }

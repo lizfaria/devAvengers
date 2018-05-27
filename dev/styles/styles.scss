@@ -1,4 +1,6 @@
-@import 'setup.scss';
+@import '_setup.scss';
+@import '_typography.scss';
+@import '_header.scss';
 // @import 'components/typography.scss';
 
 .wrapper {
@@ -12,13 +14,35 @@
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    position:relative;
     // margin: 0 auto;
     
 }
 
+.search-bar-container {
+    position:absolute;
+    top:60vh;
+    margin:0 auto;
+    width:100%;
+    font-family: $header-font;
+    color:white;
+    
+
+    input[type='text'] {
+    font-size:6rem;
+    color:white;
+    background:none;
+    border:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    }
+  
+
+}
+
 .comicForm {
     text-align: center;
-    padding-top: 40%;
 }
 
 .characterForm {
@@ -30,7 +54,6 @@ input.homeSearch {
     width: 250px;
     height: 30px;
     margin-right: 1%;
-
     border: none;
 }
 
