@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Route, 
+  Link
+} from 'react-router-dom';
 import axios from 'axios';
 import CryptoJS from "crypto-js";
+import Header from './Header';
 import ComicResults from './ComicResults';
 import SearchBar from './SearchBar';
 import MyCollection from './MyCollection';
@@ -33,16 +39,14 @@ class App extends React.Component {
       search: "",
       comics: [],
       characterId: '',
-      loggedIn: false
+      
     };
     this.changeSearchState = this.changeSearchState.bind(this);
     this.searchByComic = this.searchByComic.bind(this);
     this.searchByCharacter = this.searchByCharacter.bind(this);
-    this.logOut = this.logOut.bind(this);
+    
 
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ userLog: "loggedIn" })
-    });
+   
   }
 
   changeSearchState(value) {
@@ -52,41 +56,8 @@ class App extends React.Component {
     // console.log(value);
   }
 
-  componentDidMount() {
-    this.dbRef = firebase.database().ref('collection');
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user !== null) {
-        this.dbRef.on('value', (snapshot) => {
-          // console.log(snapshot.val());
-        });
-        this.setState({
-          loggedIn: true
-        })
-      } else {
-        // console.log('user logged out')
-        this.setState({
-          loggedIn: false
-        })
-      }
-    });
-  }
-  loginWithGoogle() {
-    console.log("clicked the button")
-    const provider = new firebase.auth.GoogleAuthProvider
-
-    firebase.auth().signInWithPopup(provider)
-      .then((user) => {
-        // console.log(user);
-      })
-      .catch((err) => {
-        // console.log(err);
-      })
-  }
-  logOut() {
-    firebase.auth().signOut();
-    this.dbRef.off('value');
-    // console.log('signout')
-  }
+  
+ 
   searchByComic() {
     //API call for seach by comic
     axios
@@ -146,42 +117,23 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="mainPage">
-          <nav className="clearfix">
-            <div className="logo-container">
-              <img id="bnw" src="http://preview.ibb.co/kEMjQb/marvel.png" width="200"></img>
-              <img id="colored" src="http://preview.ibb.co/fhn2BG/marvel.jpg" width="200"></img>
-            </div>
-            <div className="nav-container">
-              <div className="userStatus">
-                {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
-                {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}
-              </div>
-              <div className="bookmark-container">
-                <a href="#">
-                  my collection
-                </a>
-              </div>
-            </div>
-          </nav>
-          <SearchBar
-            changeSearchState={this.changeSearchState}
+      <Router>
+        <div>
+          <Header />
+          <Route exact path='/' render={(props) => <SearchBar {...props}          changeSearchState={this.changeSearchState}
             search={this.state.search}
             searchByComic={this.searchByComic}
             searchByCharacter={this.searchByCharacter}
-          />
+          />} />
+          
+          <Route path='/ComicResults' render={(props) => <ComicResults {...props} 
+            comics={this.state.comics} 
+            search={this.state.search} 
+          />} />
+
+          <Route path="/MyCollection" component={MyCollection} />    
         </div>
-        <div className="comicResults">
-          <div className="wrapper clearfix">
-            <ComicResults 
-              comics={this.state.comics} 
-              search={this.state.search} 
-            />
-          </div>
-        </div>
-        <MyCollection />
-      </div>
+      </Router>
     );
   }
 }
