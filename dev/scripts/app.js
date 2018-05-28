@@ -96,7 +96,7 @@ class App extends React.Component {
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           titleStartsWith: this.state.search,
-          limit: 16
+          limit: 4
         }
       })
       .then(res => {
@@ -117,6 +117,7 @@ class App extends React.Component {
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           name: this.state.search,
+          limit: 4
         }
       })
       .then(res => {
@@ -132,7 +133,7 @@ class App extends React.Component {
           ts: ts,
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
-          // characterId: characterId,
+          limit: 4
         }
         }).then(res => {
           // console.log(res);
@@ -147,17 +148,17 @@ class App extends React.Component {
     return (
       <div>
         <div className="mainPage">
-          <nav class="clearfix">
-            <div class="logo-container">
+          <nav className="clearfix">
+            <div className="logo-container">
               <img id="bnw" src="http://preview.ibb.co/kEMjQb/marvel.png" width="200"></img>
               <img id="colored" src="http://preview.ibb.co/fhn2BG/marvel.jpg" width="200"></img>
             </div>
             <div className="nav-container">
-              <div class="userStatus">
+              <div className="userStatus">
                 {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
                 {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}
               </div>
-              <div class="bookmark-container">
+              <div className="bookmark-container">
                 <a href="#">
                   my collection
                 </a>
@@ -179,7 +180,7 @@ class App extends React.Component {
             />
           </div>
         </div>
-        <MyCollection/>
+        <MyCollection />
       </div>
     );
   }
