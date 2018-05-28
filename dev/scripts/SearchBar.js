@@ -8,6 +8,12 @@ import {
 class SearchBar extends React.Component {
     constructor() {
         super();
+        this.state = {
+            searchComic: false,
+            searchCharacter: false
+        }
+        this.searchComic = this.searchComic.bind(this);
+        this.searchCharacter = this.searchCharacter.bind(this);
         this.handleSubmitByComic = this.handleSubmitByComic.bind(this);
         this.handleSubmitByCharacter = this.handleSubmitByCharacter.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -29,28 +35,50 @@ class SearchBar extends React.Component {
         this.props.searchByCharacter();
     }
 
+    searchComic() {
+        this.setState({
+            searchComic: true,
+            searchCharacter: false
+        })
+    }
+
+    searchCharacter() {
+        this.setState({
+            searchCharacter: true,
+            searchComic : false
+        })
+    }
+
+
+
 
 
     render () {
         return (
             <div className="mainPage">
                 <div className="search-bar-container">
-                    {/* <div className="button-container">
-                        <button onClick={this.handleSearchtByComic}>Search by Character</button>
-                        <button onClick={this.handleSearchByCharacter}>Search by Comic</button>
-                    </div> */}
 
-                    <form action="" onSubmit={this.handleSubmitByComic} className="comicForm clearfix">
-                        <input type="text" onChange={this.handleChange} value={this.props.search} placeholder="Search by Comic" className="homeSearch" />
-                            <input type="submit" className="homeSubmit" value=""/>
-                    </form>
+                    <div className="button-container">
+                    
+                        <button onClick={() => this.searchComic()}>Search by Comic</button>
+                        <button onClick={() => this.searchCharacter()}>Search by Character</button>
+                    </div>
 
+                    {this.state.searchComic === true ? (
+                        <form action="" onSubmit={this.handleSubmitByComic} className="comicForm clearfix">
+                            <input type="text" onChange={this.handleChange} value={this.props.search} placeholder="Search by Comic" className="homeSearch" />
+                                <input type="submit" className="homeSubmit" value=""/>
+                        </form>
+                    ) : null}
+
+                    {this.state.searchCharacter === true ? (
                     <form action="" onSubmit={this.handleSubmitByCharacter} className="characterForm clearfix">
                         <input type="text" onChange={this.handleChange} value={this.props.search} placeholder="Search by Character" className="homeSearch" />
 
-                            <input type="submit" value="Search" className="homeSubmit" />
-                        {/* </Link> */}
+                            <input type="submit" value="" className="homeSubmit" />
                     </form>
+                    ) : null}
+                    
                 </div>
             </div>
         )
