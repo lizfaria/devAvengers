@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
 import ComicTitle from './ComicTitle';
 import ComicWriters from './ComicWriters';
 import ComicImage from './ComicImage';
@@ -85,8 +90,11 @@ class ComicResults extends React.Component{
                                 writers= {item.name} key={n}/>
                             )
                         })} */}
+                       
                         <button className="cart" onClick={this.handleClick} value={comic.id}>{this.state.comicCart}</button>
+                    
                         <button className="cart" onClick={this.handleClickSeries} value={comic.series.resourceURI}>{this.state.seriesCart}</button>
+                    
                     </div>
                 )
             })
@@ -94,8 +102,10 @@ class ComicResults extends React.Component{
 
     render() {
         return(
-            <div>
-                {this.getComic()}
+            <div className="comicResults">
+                <div className="wrapper clearfix">
+                    {this.getComic()}
+                </div>
             </div>
         )
     }
