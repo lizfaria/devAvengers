@@ -30,17 +30,16 @@
     height: 100px;
     padding: 0;
     
-    
     input[type='text'] {
         font-size:5rem;
         color:white;
-        background:none;
         border:0;
         padding:0;
         width:85%;
         height:100px;
         float:left;
         margin: 0;
+        background:none;
         background-color:rgba(0,0,0,0.8);
         &:hover {
             background-color: rgba(0,0,0,0.5);

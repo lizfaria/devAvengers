@@ -25,6 +25,7 @@ class MyCollection extends React.Component {
   constructor() {
     super();
     this.state = {
+      myCollection: [],
       comicCollection: [],
       seriesCollection: []
     };
@@ -36,7 +37,8 @@ class MyCollection extends React.Component {
       params: {
         ts: ts,
         apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
-        hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString()
+        hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
+        limit: 4
       }
     });
   }
@@ -47,7 +49,8 @@ class MyCollection extends React.Component {
       params: {
         ts: ts,
         apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
-        hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString()
+        hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
+        limit: 4
       }
     });
   }
@@ -61,16 +64,30 @@ class MyCollection extends React.Component {
         comicData[item].key = item;
         myCollection.push(comicData[item]);
       }
-      console.log(myCollection);
+      
+      this.setState({
+        myCollection: myCollection
+      })
+
+
+
+      
+      // console.log(myCollection);
       //put id of each comic into an array called comicIds
-      const comicIds = myCollection.map(item => {
+      const comicIds = myCollection
+      .filter(item => item.id !== '')
+      .map(item => {
         return item.id;
       });
+      // console.log(comicIds)
 
     //put series ids into an array called seriesIds
-      const seriesIds = myCollection.map(item => {
+      const seriesIds = myCollection
+        .filter(item => item.series !== '')
+        .map(item => {
         return item.series;
       });
+      console.log(seriesIds)
 
       //Maps over comidIds array and passes each comic id into getComic function above
       const comicRequests = comicIds.map(id => {
@@ -85,56 +102,90 @@ class MyCollection extends React.Component {
       //When you get all results return from API call, store int an array called comicCollection or series Collection.
       //Then, map over it and return me the first result in the array. 
       Promise.all(comicRequests).then(results => {
-        console.log(results);
+        // console.log(results);
         const comicCollection = results.map(comic => {
           return comic.data.data.results[0];
         });
         this.setState({
-          comicCollection: comic
+          comicCollection: comicCollection
         });
       });
 
       Promise.all(seriesRequests).then(results => {
-        console.log(results);
+        // console.log(results);
 
-        // const seriesCollection = results.map(series => {
-        //     return series.data.data.results[0];
-        // });
-        // console.log(seriesCollection);
+        const seriesCollection = results.map(series => {
+            return series.data.data.results[0];
+        });
+        console.log(seriesCollection);
 
-        // this.setState({
-        //     seriesCollection: series
-        // });
+        this.setState({
+            seriesCollection: seriesCollection
+        });
       });
-    });
+    
+    });  
   }
-
 
   //method to remove collection
-  removeCollection(){
-    firebase.database().ref(`collection/${key}`).remove()
+  removeSeries(key) {
+    firebase.database()
+    .orderByChild('series')
+    .equalTo(key)
+    .once('value').then(function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        firebase.database().child(childSnapshot.key).remove();
+      })
+    })
+    console.log(firebase.database()
+    .orderByChild('series'));
+    
+    
+
+    // console.log(firebase.database().ref(`collection/${key}`));
   }
+//go to firebase database
+// find all children of collection
+// find any grandchild of collection whose value matches the series id or issue id
+// child, parent methods
 
   render() {
     return (
       <div>
-        {this.state.comicCollection.map((item, i) => {
-          return (
-            <div key={i}>
-              //{" "}
-              <img
-                src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-                alt=""
-              />
-              <p>{item.title}</p>
-            </div>
-          );
-        })}
+        <div>
+          <p>comic</p>
+          {this.state.comicCollection.map((item, i) => {
+            return (
+              <div key={i}>
+                <img
+                  src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                  alt=""
+                />
+                <p>{item.title}</p>
+                {/* <button onClick={() => this.removeCollection(item.id)}>X</button> */}
+              
+              </div>
+            );
+          })}
+        </div>
 
-        {/* <p>{this.state.collection.map((item) => {
-                    return item.title
-                })}</p> */}
-      </div>
+        <div>
+          <p>series</p>
+          {this.state.seriesCollection.map((item, i) => {
+            return (
+              <div key={i}>
+                <img
+                  src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                  alt=""
+                />
+                <p>{item.title}</p>
+                <button onClick={() => this.removeSeries(item.id)}>X</button> 
+                
+              </div>
+            );
+          })}
+        </div>
+    </div>
     );
   }
 }
