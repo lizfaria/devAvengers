@@ -55,6 +55,7 @@ class MyCollection extends React.Component {
   }
   componentDidMount() {
     const dbRef = firebase.database().ref("collection");
+    
     dbRef.on("value", snapshot => {
       const comicData = snapshot.val();
       const myCollection = [];
@@ -72,23 +73,31 @@ class MyCollection extends React.Component {
       const comicIds = myCollection
         .filter(item => item.id !== '')
         .map(item => {
-          return item.id;
+          // return item.id;
+          return {
+            key: item.key,
+            id: item.id
+          }
         });
       // console.log(comicIds)
       //put series ids into an array called seriesIds
       const seriesIds = myCollection
         .filter(item => item.series !== '')
         .map(item => {
-          return item.series;
+          // return item.series;
+          return {
+            key: item.key,
+            id: item.series
+          }
         });
       console.log(seriesIds)
       //Maps over comidIds array and passes each comic id into getComic function above
-      const comicRequests = comicIds.map(id => {
-        return this.getComic(id);
+      const comicRequests = comicIds.map(item => {
+        return this.getComic(item.id);
       });
       //Maps over seriesIds array and passes each series id into getSeries function above
-      const seriesRequests = seriesIds.map(id => {
-        return this.getSeries(id);
+      const seriesRequests = seriesIds.map(item => {
+        return this.getSeries(item.id);
       });
       //When you get all results return from API call, store int an array called comicCollection or series Collection.
       //Then, map over it and return me the first result in the array. 
@@ -96,7 +105,11 @@ class MyCollection extends React.Component {
         // console.log(results);
         const comicCollection = results.map(comic => {
           return comic.data.data.results[0];
-        });
+        })
+        .map((comic, i) => {
+          comic.key = comicIds[i].key
+          return comic
+        })
         this.setState({
           comicCollection: comicCollection
         });
@@ -105,7 +118,11 @@ class MyCollection extends React.Component {
         // console.log(results);
         const seriesCollection = results.map(series => {
           return series.data.data.results[0];
-        });
+        })
+        .map((series, i) => {
+          series.key = seriesIds[i].key
+          return series
+        })
         console.log(seriesCollection);
         this.setState({
           seriesCollection: seriesCollection
@@ -115,21 +132,12 @@ class MyCollection extends React.Component {
     });
   }
   //method to remove collection
-  removeSeries(key) {
-    firebase.database()
-      .orderByChild('series')
-      .equalTo(key)
-      .once('value').then(function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-          firebase.database().child(childSnapshot.key).remove();
-        })
-      })
-    console.log(firebase.database()
-      .orderByChild('series'));
-
-
-    // console.log(firebase.database().ref(`collection/${key}`));
+  removeItem(key) {
+    firebase.database().ref(`collection/${key}`).remove()
+  console.log(key);
   }
+
+
   //go to firebase database
   // find all children of collection
   // find any grandchild of collection whose value matches the series id or issue id
@@ -138,32 +146,30 @@ class MyCollection extends React.Component {
     return (
       <div>
         <div>
-          <p>comic</p>
           {this.state.comicCollection.map((item, i) => {
             return (
               <div key={i}>
                 <img
-                  src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                  src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`}
                   alt=""
                 />
                 <p>{item.title}</p>
-                {/* <button onClick={() => this.removeCollection(item.id)}>X</button> */}
+                <button onClick={() => this.removeItem(item.key)}>X</button>
 
               </div>
             );
           })}
         </div>
         <div>
-          <p>series</p>
           {this.state.seriesCollection.map((item, i) => {
             return (
               <div key={i}>
                 <img
-                  src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+                  src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`}
                   alt=""
                 />
                 <p>{item.title}</p>
-                <button onClick={() => this.removeSeries(item.id)}>X</button>
+                <button onClick={() => this.removeItem(item.key)}>X</button>
 
               </div>
             );

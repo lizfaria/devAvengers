@@ -77,7 +77,7 @@ class ComicResults extends React.Component{
                 return (
                     <div key={comic.id} className="comicContainer">
                         <ComicImage 
-                        image= {`${comic.thumbnail.path}.${comic.thumbnail.extension}`} />
+                            image={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`} />
                         <ComicTitle 
                         title= {comic.title} />
                         {/* {comic.creators.items.filter((item) => {
