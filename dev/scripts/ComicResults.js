@@ -7,17 +7,18 @@ import firebase from 'firebase';
 class ComicResults extends React.Component{ 
     constructor(){
         super();
-        // this.state = {
-        //     // collection: [],
-        //     id: ''
-        // };
+        this.state = {
+            // collection: [],
+            id: ''
+                };
         this.handleClick = this.handleClick.bind(this);
         this.getComic = this.getComic.bind(this);
         this.hide = this.hide.bind(this);
+        // this.handleUpdateSearchTitle = this.handleUpdateSearchTitle.
+        // bind(this)
     }    
 
     handleClick(e) {
-
         // this.setState ({
         //     id: e.target.value
         // })
@@ -32,10 +33,11 @@ class ComicResults extends React.Component{
             dbRef.push(collection)
 
             const buttonSave = document.getElementById(`${collection.id}`);
-            console.log(buttonSave)
+            console.log('buttonSave')
             buttonSave.classList.add("saved");
             buttonSave.innerHTML = "Saved!";
-        } else {
+        }
+         else {
             this.setState({ mustLogin: true })
         }
     }
@@ -47,23 +49,26 @@ class ComicResults extends React.Component{
     getComic() {
            return this.props.comics.map((comic, i) => {
                 return (
-                    <div key={comic.id} className="comicContainer">
-                        <ComicImage 
-                        image= {`${comic.thumbnail.path}.${comic.thumbnail.extension}`} />
-                        <ComicTitle 
-                        title= {comic.title} />
-                        {/* {comic.creators.items.filter((item) => {
-                            return (
-                                item.role === 'writer'
-                            )
-                        }).map((item, n) => {
-                            return (
-                                <ComicWriters 
-                                writers= {item.name} key={n}/>
-                            )
-                        })} */}
-                        <button onClick={this.handleClick} value={comic.id}>Add Comic to My Collection</button>
-                    </div>
+                    <div>
+                        {/* <h2>{this.handleUpdateSearchTitle}</h2> */}
+                        <div key={comic.id} className="comicContainer">
+                            <ComicImage 
+                            image= {`${comic.thumbnail.path}.${comic.thumbnail.extension}`} />
+                            <ComicTitle 
+                            title= {comic.title} />
+                            {/* {comic.creators.items.filter((item) => {
+                                return (
+                                    item.role === 'writer'
+                                )
+                            }).map((item, n) => {
+                                return (
+                                    <ComicWriters 
+                                    writers= {item.name} key={n}/>
+                                )
+                            })} */}
+                            <button onClick={this.handleClick} value={comic.id}>Add Comic to My Collection</button>
+                        </div>
+                    </div> 
                 )
             })
         

@@ -16,9 +16,10 @@ export default class UserLogin extends React.Component {
     }
 
     componentDidMount() {
-        this.dbRef = firebase.database().ref('todos');
+        this.dbRef = firebase.database().ref('collection');
         firebase.auth().onAuthStateChanged((user) => {
             if (user !== null) {
+                console.log('user logged in')
                 this.dbRef.on('value', (snapshot) => {
                     console.log(snapshot.val());
                 });

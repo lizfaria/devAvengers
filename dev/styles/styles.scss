@@ -16,28 +16,52 @@
     min-height: 100vh;
     position:relative;
     // margin: 0 auto;
-    
 }
 
 .search-bar-container {
-    position:absolute;
+    position:relative;
+    max-width: 900px;
     top:60vh;
     margin:0 auto;
-    width:100%;
     font-family: $header-font;
     color:white;
+    border-radius: 20px 20px 20px 20px;
+    height: 100px;
+    padding: 0;
+    background-color: (0,0,0,0.8);
     
-
     input[type='text'] {
-    font-size:6rem;
-    color:white;
-    background:none;
-    border:0;
-    padding:0;
-    width:100%;
-    height:100%;
+        font-size:5rem;
+        color:white;
+        background:none;
+        border:0;
+        padding:0;
+        width:85%;
+        height:100px;
+        float:left;
+        margin: 0;
+        background-color:rgba(0,0,0,0.8);
+        &:hover {
+            background-color: rgba(0,0,0,0.5);
+        }    
     }
-  
+    input[type='submit'] {
+        float:left;
+        width:14%;
+        height:100px;
+        padding: 5px;
+        background-image: url('../../public/images/search.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-color:rgba(0,0,0,0.8);
+        max-width:100%;
+        border-radius: 0 20px 20px 0;   
+    }
+    input[type='radio'] {
+        clear:both;
+        text-align:Center;
+    }
 
 }
 
@@ -78,12 +102,9 @@ input.homeSubmit {
     text-align: center;
 }
 
- .comicContainer:nth-of-type(4n+4) {
+.comicContainer:nth-of-type(4n+4) {
      margin-right: 0;
 }
-
-
-
 
 img.comicCover {
     width: 250px;
