@@ -152,15 +152,16 @@ class App extends React.Component {
               <img id="bnw" src="http://preview.ibb.co/kEMjQb/marvel.png" width="200"></img>
               <img id="colored" src="http://preview.ibb.co/fhn2BG/marvel.jpg" width="200"></img>
             </div>
-            <div class="userStatus">
-              {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}><img src="../../public/images/login-icon.png" alt="login avatar" /></button>}
-              {this.state.loggedIn === true ? <button onClick={this.logOut}><img src="../../public/images/login-icon.png" alt="login avatar" /></button> : null}
-              {/* {this.state.loggedIn === true && <myCollection />} */}
-            </div>
-            <div class="bookmark-container">
-              <a href="#">
-                <img src="../../public/images/bookmark-icon.png" alt="bookmark star" />
-              </a>
+            <div className="nav-container">
+              <div class="userStatus">
+                {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
+                {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}
+              </div>
+              <div class="bookmark-container">
+                <a href="#">
+                  my collection
+                </a>
+              </div>
             </div>
           </nav>
           <SearchBar
@@ -178,12 +179,7 @@ class App extends React.Component {
             />
           </div>
         </div>
-
-      
-
-        <MyCollection
-
-        />
+        <MyCollection/>
       </div>
     );
   }

@@ -7,6 +7,10 @@ import firebase from 'firebase';
 class ComicResults extends React.Component{ 
     constructor(){
         super();
+        this.state = {
+            // collection: [],
+            id: ''
+                };
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
         this.getComic = this.getComic.bind(this);
@@ -23,9 +27,18 @@ class ComicResults extends React.Component{
         if (firebase.auth().currentUser != null) {
             const user = firebase.auth().currentUser;
             const dbRef = firebase.database().ref('collection');
-            dbRef.push(collection) 
-        }
+            dbRef.push(collection)
+
+        //     const buttonSave = document.getElementById(`${collection.id}`);
+        //     console.log('buttonSave')
+        //     buttonSave.classList.add("saved");
+        //     buttonSave.innerHTML = "Saved!";
+        // }
+        //  else {
+        //     this.setState({ mustLogin: true })
+        // }
     }
+}
 
     handleClickSeries(e) {
         const seriesItem = e.target.value;
