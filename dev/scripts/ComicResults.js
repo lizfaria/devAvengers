@@ -9,7 +9,9 @@ class ComicResults extends React.Component{
         super();
         this.state = {
             // collection: [],
-            id: ''
+            id: '',
+            comicCart: 'Add comic to my collection',
+            seriesCart: 'Add series to my collection' 
                 };
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
@@ -21,7 +23,7 @@ class ComicResults extends React.Component{
         const collectionItem = e.target.value;
         const collection = {
             id: collectionItem,
-            series: ''        
+            series: '',
         };
         
         if (firebase.auth().currentUser != null) {
@@ -38,6 +40,9 @@ class ComicResults extends React.Component{
         //     this.setState({ mustLogin: true })
         // }
     }
+        this.setState({
+            comicCart: "saved"
+        })
 }
 
     handleClickSeries(e) {
@@ -55,18 +60,14 @@ class ComicResults extends React.Component{
             const user = firebase.auth().currentUser;
             const dbRef = firebase.database().ref('collection');
             dbRef.push(collection) 
-        }
-    }
-        
-        
-
-        //     const buttonSave = document.getElementById(`${collection.id}`);
-        //     // console.log(buttonSave)
-        //     buttonSave.classList.add("saved");
-        //     buttonSave.innerHTML = "Saved!";
         // } else {
         //     this.setState({ mustLogin: true })
         // }
+        }
+        this.setState({
+            seriesCart: "saved"
+        })
+    }
 
     // hide() {
     //     this.setState({ mustLogin: false })
@@ -90,8 +91,8 @@ class ComicResults extends React.Component{
                                 writers= {item.name} key={n}/>
                             )
                         })} */}
-                        <button onClick={this.handleClick} value={comic.id}>Add Comic to My Collection</button>
-                        <button onClick={this.handleClickSeries} value={comic.series.resourceURI}>Add Series to My Collection</button>
+                        <button className="cart" onClick={this.handleClick} value={comic.id}>{this.state.comicCart}</button>
+                        <button className="cart" onClick={this.handleClickSeries} value={comic.series.resourceURI}>{this.state.seriesCart}</button>
                     </div>
                 )
             })
