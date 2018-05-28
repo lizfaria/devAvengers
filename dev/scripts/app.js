@@ -57,13 +57,13 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
         this.dbRef.on('value', (snapshot) => {
-          console.log(snapshot.val());
+          // console.log(snapshot.val());
         });
         this.setState({
           loggedIn: true
         })
       } else {
-        console.log('user logged out')
+        // console.log('user logged out')
         this.setState({
           loggedIn: false
         })
@@ -76,16 +76,16 @@ class App extends React.Component {
 
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
-        console.log(user);
+        // console.log(user);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
   }
   logOut() {
     firebase.auth().signOut();
     this.dbRef.off('value');
-    console.log('signout')
+    // console.log('signout')
   }
   searchByComic() {
     //API call for seach by comic
@@ -100,7 +100,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        console.log(res);
+        // console.log(res);
 
         this.setState({
           comics: res.data.data.results
