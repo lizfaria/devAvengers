@@ -22,7 +22,7 @@ class ComicResults extends React.Component{
         const collectionItem = e.target.value;
         const collection = {
             id: collectionItem,
-            series: ''        
+            series: '',
         };
         
         if (firebase.auth().currentUser != null) {
@@ -34,6 +34,9 @@ class ComicResults extends React.Component{
             })
         
     }
+        this.setState({
+            comicCart: "saved"
+        })
 }
 
     handleClickSeries(e) {
@@ -51,12 +54,18 @@ class ComicResults extends React.Component{
             const user = firebase.auth().currentUser;
             const dbRef = firebase.database().ref('collection');
             dbRef.push(collection) 
+        // } else {
+        //     this.setState({ mustLogin: true })
+        // }
         }
         this.setState({
             seriesCart: "saved"
         })
     }
-        
+
+    // hide() {
+    //     this.setState({ mustLogin: false })
+    // }
 
     getComic() {
            return this.props.comics.map((comic, i) => {
