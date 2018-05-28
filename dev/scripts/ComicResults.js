@@ -11,12 +11,11 @@ class ComicResults extends React.Component{
             // collection: [],
             id: '',
             comicCart: 'Add comic to my collection',
-            seriesCart: 'Add series to my collection' 
-                };
+            seriesCart: 'Add series to my collection'
+        };
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
         this.getComic = this.getComic.bind(this);
-        // this.hide = this.hide.bind(this);
     }    
 
     handleClick(e) {
@@ -30,15 +29,10 @@ class ComicResults extends React.Component{
             const user = firebase.auth().currentUser;
             const dbRef = firebase.database().ref('collection');
             dbRef.push(collection)
-
-        //     const buttonSave = document.getElementById(`${collection.id}`);
-        //     console.log('buttonSave')
-        //     buttonSave.classList.add("saved");
-        //     buttonSave.innerHTML = "Saved!";
-        // }
-        //  else {
-        //     this.setState({ mustLogin: true })
-        // }
+            this.setState({
+                comicCart: "saved"
+            })
+        
     }
         this.setState({
             comicCart: "saved"
