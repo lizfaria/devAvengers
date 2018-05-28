@@ -121,7 +121,7 @@ class MyCollection extends React.Component {
         {this.state.comicCollection.map((item, i) => {
           return (
             <div key={i}>
-              //{" "}
+            
               <img
                 src={`${item.thumbnail.path}.${item.thumbnail.extension}`}
                 alt=""
