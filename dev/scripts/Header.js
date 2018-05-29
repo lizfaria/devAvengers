@@ -23,14 +23,13 @@ class Header extends React.Component {
         this.dbRef = firebase.database().ref('collection');
         firebase.auth().onAuthStateChanged((user) => {
             if (user !== null) {
+                const uid = user.uid;
                 this.dbRef.on('value', (snapshot) => {
-                    // console.log(snapshot.val());
                 });
                 this.setState({
                     loggedIn: true
                 })
             } else {
-                // console.log('user logged out')
                 this.setState({
                     loggedIn: false
                 })
@@ -38,6 +37,7 @@ class Header extends React.Component {
         });
     }
 
+    
     loginWithGoogle() {
         console.log("clicked the button")
         const provider = new firebase.auth.GoogleAuthProvider

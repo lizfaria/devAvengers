@@ -6,6 +6,7 @@
 $header-font: 'Oswald', sans-serif;
 $body-font: 'Source Sans Pro', sans-serif;
 
+
 .wrapper {
     width: 85%;
     margin: 0 auto;
@@ -22,7 +23,7 @@ $body-font: 'Source Sans Pro', sans-serif;
 .search-bar-container {
     position:relative;
     max-width: 900px;
-    top:60vh;
+    top:50vh;
     margin:0 auto;
     font-family: $header-font;
     color:white;
@@ -44,10 +45,7 @@ $body-font: 'Source Sans Pro', sans-serif;
         background-color:rgba(0,0,0,0.8);
         text-align:left;
         transition: all .3s ease-in-out;
-        padding: 0 0 0 10px;
-        &:hover {
-            background-color: rgba(0,0,0,0.5);
-        }    
+        padding: 0 0 0 10px; 
     }
     input[type='submit'] {
         float:left;
@@ -71,25 +69,34 @@ $body-font: 'Source Sans Pro', sans-serif;
 
 .button-container {
     width:100%;
-    button {
+    .button {
         height:45px;
         background: whitesmoke;
         // border-radius: 20px;
         font-family: $header-font;
         color: black;
         font-size: 2rem;
-        border: 2px solid $red;
+        border-bottom: 2px solid $red;
         border-radius: 20px 20px 0 0;
         transition: all .3s ease-in-out;
         width:50%;
         &:hover {
             background-color: $red;
             color: whitesmoke;
+            border: 1px solid red;
         }
-        &:focus {
-            background-color: $red;
-            color: whitesmoke;
-        }
+    }
+    .button-clicked {
+height:45px;
+        background: red;
+        // border-radius: 20px;
+        font-family: $header-font;
+        color: whitesmoke;
+        font-size: 2rem;
+        border: 2px solid $red;
+        border-radius: 20px 20px 0 0;
+        transition: all .3s ease-in-out;
+        width:50%;
     }
 }
 
