@@ -59,26 +59,24 @@ class Header extends React.Component {
     render() {
         return (
         <nav className="clearfix">
-    
-         
+            <div className="wrapper">
                 <div className="logo-container">
-                    <Link to="/"><img id="bnw" src="http://preview.ibb.co/kEMjQb/marvel.png" width="200"></img></Link>
+                    <Link to="/"><img id="bnw" src="../../assets//marvel.png" width="200"></img></Link>
                 </div>
-           
-
                 <div className="nav-container clearfix">
-                <div className="userStatus">
-                    {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
-                    {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}
-                </div>
-                <div className="bookmark-container">
-                    <Link to="/MyCollection">
-                        my collection
-                    </Link>
+                    <div className="userStatus">
+                        {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
+                        {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}
+                    </div>
+                    <div className="bookmark-container">
+                        <Link to="/MyCollection">
+                            my collection
+                        </Link>
+                    </div>
                 </div>
             </div>
         </nav>
-    )
+        )
     }    
 }
 
