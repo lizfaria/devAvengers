@@ -22,6 +22,7 @@ class ComicResults extends React.Component{
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
         this.getComic = this.getComic.bind(this);
+        // this. getUrl = this.getUrl.bind(this);
     }    
 
     handleClick(e) {
@@ -38,7 +39,8 @@ class ComicResults extends React.Component{
                 comicCart: "saved",
                 userId: user
             })
-    }
+        } else alert("Please Sign In")
+        
 }
 
     handleClickSeries(e) {
@@ -58,24 +60,20 @@ class ComicResults extends React.Component{
                 seriesCart: "saved",
                 userId: user
             })
-        }
-        // } else {
-        //     this.setState({ mustLogin: true })
-        // }
+        } else alert("Please Sign In")
+      
         }
 
-
-
-    // hide() {
-    //     this.setState({ mustLogin: false })
-    // }
 
     getComic() {
            return this.props.comics.map((comic, i) => {
                 return (
                     <div key={comic.id} className="comicContainer">
                         <ComicImage 
-                            image={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`} />
+                            image={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`} 
+                            url={comic.urls[0].url} 
+                        />
+
                         <ComicTitle 
                         title= {comic.title} />
                         {/* {comic.creators.items.filter((item) => {

@@ -72,7 +72,7 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        // console.log(res);
+        console.log(res);
 
         this.setState({
           comics: res.data.data.results
