@@ -39,7 +39,7 @@ class ComicResults extends React.Component{
                 comicCart: "saved",
                 userId: user
             })
-        } else alert("Please Sign In")
+        } else alert("Please sign in.")
         
 }
 
@@ -60,7 +60,7 @@ class ComicResults extends React.Component{
                 seriesCart: "saved",
                 userId: user
             })
-        } else alert("Please Sign In")
+        } else alert("Please sign in.")
       
         
         }
