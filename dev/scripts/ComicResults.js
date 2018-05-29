@@ -62,6 +62,7 @@ class ComicResults extends React.Component{
             })
         } else alert("Please Sign In")
       
+        
         }
 
 
