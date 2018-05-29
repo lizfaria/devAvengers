@@ -16,7 +16,8 @@ class ComicResults extends React.Component{
             // collection: [],
             id: '',
             comicCart: 'Add Comic to Collection',
-            seriesCart: 'Add Series to Collection'
+            seriesCart: 'Add Series to Collection',
+            userId: "" 
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
@@ -29,20 +30,16 @@ class ComicResults extends React.Component{
         const collection = {
             id: collectionItem,
             series: '',
-        };
-        
+        };     
         if (firebase.auth().currentUser != null) {
-            const user = firebase.auth().currentUser;
-            const dbRef = firebase.database().ref('collection');
+            const user = firebase.auth().currentUser.uid;
+            const dbRef = firebase.database().ref(`collection/${user}`);
             dbRef.push(collection)
             this.setState({
-                comicCart: "saved"
+                comicCart: "saved",
+                userId: user
             })
-        
     }
-        this.setState({
-            comicCart: "saved"
-        })
 }
 
     handleClickSeries(e) {
@@ -50,24 +47,25 @@ class ComicResults extends React.Component{
         const seriesId = seriesItem.split(`/`);
         // split the url at the slash points and store last value in array
         // console.log(seriesId[6]);
-        
         const collection = {
             id: '',
             series: seriesId[6]
         };
-
         if (firebase.auth().currentUser != null) {
-            const user = firebase.auth().currentUser;
-            const dbRef = firebase.database().ref('collection');
-            dbRef.push(collection) 
+            const user = firebase.auth().currentUser.uid;
+            const dbRef = firebase.database().ref(`collection/${user}`);
+            dbRef.push(collection)
+            this.setState({
+                seriesCart: "saved",
+                userId: user
+            })
+        }
         // } else {
         //     this.setState({ mustLogin: true })
         // }
         }
-        this.setState({
-            seriesCart: "saved"
-        })
-    }
+
+
 
     // hide() {
     //     this.setState({ mustLogin: false })
