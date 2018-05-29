@@ -21,6 +21,7 @@ class ComicResults extends React.Component{
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
         this.getComic = this.getComic.bind(this);
+        // this. getUrl = this.getUrl.bind(this);
     }    
 
     handleClick(e) {
@@ -72,12 +73,26 @@ class ComicResults extends React.Component{
     //     this.setState({ mustLogin: false })
     // }
 
+    // getUrl() {
+    //     console.log(`reached`);
+        
+    //     return this.props.comics.map((comic, i) => {
+    //                 console.log(comic.urls[0]);
+    //                 // return (
+    //                 //     comic.urls[0].url
+    //                 // )
+    //     })
+    // }
+
     getComic() {
            return this.props.comics.map((comic, i) => {
                 return (
                     <div key={comic.id} className="comicContainer">
                         <ComicImage 
-                            image={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`} />
+                            image={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`} 
+                            url={comic.urls[0].url} 
+                        />
+
                         <ComicTitle 
                         title= {comic.title} />
                         {/* {comic.creators.items.filter((item) => {
