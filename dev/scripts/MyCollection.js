@@ -134,14 +134,14 @@ class MyCollection extends React.Component {
           });
 
         });
-      }
+      } else alert("Please sign in.")
+
     })
     
   }
   //method to remove collection
   removeItem(key) {
     firebase.database().ref(`collection/${this.state.userId}/${key}`).remove()
-    console.log(key);
   }
 
 

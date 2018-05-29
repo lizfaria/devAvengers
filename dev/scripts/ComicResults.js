@@ -36,7 +36,7 @@ class ComicResults extends React.Component{
             this.setState({
                 userId: user
             })
-        } else alert("Please Sign In")
+        } else alert("Please sign in.")
         
 }
 
@@ -56,7 +56,7 @@ class ComicResults extends React.Component{
             this.setState({
                 userId: user
             })
-        } else alert("Please Sign In")
+        } else alert("Please sign in.")
       
         
         }
