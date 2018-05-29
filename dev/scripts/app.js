@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import CryptoJS from "crypto-js";
 import Header from './Header';
+import Footer from './Footer'
 import ComicResults from './ComicResults';
 import SearchBar from './SearchBar';
 import MyCollection from './MyCollection';
@@ -132,6 +133,7 @@ class App extends React.Component {
           />} />
 
           <Route path="/MyCollection" component={MyCollection} />    
+          <Footer />
         </div>
       </Router>
     );

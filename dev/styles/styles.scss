@@ -14,9 +14,8 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(../../assets/Deadpool-Wallpaper-1920x1080.jpg);
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
-    position:relative;
-    // margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
 }
 
 .search-bar-container {
@@ -27,28 +26,32 @@
     font-family: $header-font;
     color:white;
     border-radius: 20px 20px 20px 20px;
-    height: 100px;
+    height: 60px;
     padding: 0;
     
     input[type='text'] {
-        font-size:5rem;
+        font-size:2rem;
         color:white;
         border:0;
         padding:0;
         width:85%;
-        height:100px;
+        height:60px;
         float:left;
         margin: 0;
         background:none;
+        border-radius: 0 0 20px 20px;
         background-color:rgba(0,0,0,0.8);
+        text-align:left;
+        transition: all .3s ease-in-out;
+        padding: 0 0 0 10px;
         &:hover {
             background-color: rgba(0,0,0,0.5);
         }    
     }
     input[type='submit'] {
         float:left;
-        width:14%;
-        height:100px;
+        width:15%;
+        height:60px;
         padding: 5px;
         background-image: url('../../assets/search.svg');
         background-repeat: no-repeat;
@@ -56,7 +59,7 @@
         background-size: contain;
         background-color:rgba(0,0,0,0.8);
         max-width:100%;
-        border-radius: 0 20px 20px 0;   
+        border-radius: 0 0 20px 0;   
     }
     input[type='radio'] {
         clear:both;
@@ -65,13 +68,36 @@
 
 }
 
+.button-container {
+    width:100%;
+    button {
+        height:45px;
+        background: whitesmoke;
+        // border-radius: 20px;
+        font-family: $header-font;
+        color: black;
+        font-size: 2rem;
+        border: 2px solid $red;
+        border-radius: 20px 20px 0 0;
+        transition: all .3s ease-in-out;
+        width:50%;
+        &:hover {
+            background-color: $red;
+            color: whitesmoke;
+        }
+        &:focus {
+            background-color: $red;
+            color: whitesmoke;
+        }
+    }
+}
+
 .comicForm {
     text-align: center;
 }
 
 .characterForm {
     text-align: center;
-    margin-top: 2%;
 }
 
 input.homeSearch {
