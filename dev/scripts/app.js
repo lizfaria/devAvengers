@@ -68,7 +68,7 @@ class App extends React.Component {
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           titleStartsWith: this.state.search,
-          limit: 4
+          limit: 12
         }
       })
       .then(res => {
@@ -89,7 +89,7 @@ class App extends React.Component {
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           name: this.state.search,
-          limit: 4
+          limit: 12
         }
       })
       .then(res => {
@@ -105,7 +105,7 @@ class App extends React.Component {
           ts: ts,
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
-          limit: 4
+          limit: 12
         }
         }).then(res => {
           // console.log(res);
