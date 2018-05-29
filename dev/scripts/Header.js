@@ -66,7 +66,7 @@ class Header extends React.Component {
                 </div>
            
 
-            <div className="nav-container">
+                <div className="nav-container clearfix">
                 <div className="userStatus">
                     {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
                     {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}

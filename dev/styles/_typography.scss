@@ -6,7 +6,22 @@ $baby-blue: #47a0cb;
 $grey:#848686;
 $red: #ef1820;
 
+@mixin remCalc($fontSize) {
+    font-size: ($fontSize / 16) * 1rem;
+}
+
+html {
+    font-size: 100%;
+}
+
 p {
     font-family: $body-font;
     
+}
+
+h6 {
+    font-family: $header-font;
+    @include remCalc(30);
+    color: white;
+    margin: 0 0 3% 0;
 }

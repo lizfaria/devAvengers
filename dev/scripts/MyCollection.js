@@ -144,37 +144,41 @@ class MyCollection extends React.Component {
   // child, parent methods
   render() {
     return (
-      <div>
-        <div>
+      <div className="myCollection">
+      <div className="wrapper">
+        <div className="clearfix">
+        <h6>Your Comics:</h6>
           {this.state.comicCollection.map((item, i) => {
             return (
-              <div key={i}>
+              <div key={i} className="collectionComicContainer">
                 <img
                   src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`}
                   alt=""
                 />
-                <p>{item.title}</p>
-                <button onClick={() => this.removeItem(item.key)}>X</button>
+                <p className="comicTitle">{item.title}</p>
+                <button onClick={() => this.removeItem(item.key)} className="removeButton">X</button>
 
               </div>
             );
           })}
         </div>
-        <div>
+        <div className="clearfix">
+        <h6>Your Series:</h6>
           {this.state.seriesCollection.map((item, i) => {
             return (
-              <div key={i}>
+              <div key={i} className="collectionComicContainer">
                 <img
                   src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`}
                   alt=""
                 />
-                <p>{item.title}</p>
-                <button onClick={() => this.removeItem(item.key)}>X</button>
+                <p className="comicTitle">{item.title}</p>
+                <button onClick={() => this.removeItem(item.key)} className="removeButton">X</button>
 
               </div>
             );
           })}
         </div>
+      </div>  
       </div>
     );
   }
