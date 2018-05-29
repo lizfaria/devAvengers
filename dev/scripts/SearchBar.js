@@ -38,8 +38,8 @@ class SearchBar extends React.Component {
 
     searchComic() {
         // change button style on click
-        document.getElementById('comic-button').classList.remove('button');
-        document.getElementById('comic-button').classList.add('button-clicked');
+        document.getElementById('comic-button').classList.remove('button-clicked');
+        document.getElementById('comic-button').classList.add('button');
         document.getElementById('character-button').classList.add('button');
         document.getElementById('character-button').classList.remove('button-clicked');
         this.setState({
@@ -66,7 +66,7 @@ class SearchBar extends React.Component {
             <div className="search-bar-container">
 
                 <div className="button-container">
-                    <button class="button" id="comic-button" onClick={() => this.searchComic()}>Search by Comic</button>
+                    <button class="button-clicked" id="comic-button" onClick={() => this.searchComic()}>Search by Comic</button>
                     <button class="button" id="character-button" onClick={() => this.searchCharacter()}>Search by Character</button>
                 </div>
 

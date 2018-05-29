@@ -15,8 +15,6 @@ class ComicResults extends React.Component{
         this.state = {
             // collection: [],
             id: '',
-            comicCart: 'Add Comic to Collection',
-            seriesCart: 'Add Series to Collection',
             userId: "" 
         };
         this.handleClick = this.handleClick.bind(this);
@@ -36,7 +34,6 @@ class ComicResults extends React.Component{
             const dbRef = firebase.database().ref(`collection/${user}`);
             dbRef.push(collection)
             this.setState({
-                comicCart: "saved",
                 userId: user
             })
         } else alert("Please Sign In")
@@ -57,7 +54,6 @@ class ComicResults extends React.Component{
             const dbRef = firebase.database().ref(`collection/${user}`);
             dbRef.push(collection)
             this.setState({
-                seriesCart: "saved",
                 userId: user
             })
         } else alert("Please Sign In")
@@ -89,9 +85,9 @@ class ComicResults extends React.Component{
                         })} */}
 
                         <div className="addToCollection">
-                            <button className="cart cartComic" onClick={this.handleClick} value={comic.id}>{this.state.comicCart}</button>
+                            <button className="cart cartComic" onClick={this.handleClick} value={comic.id}>Add to comic Collection</button>
                         
-                            <button className="cart cartSeries" onClick={this.handleClickSeries} value={comic.series.resourceURI}>{this.state.seriesCart}</button>
+                            <button className="cart cartSeries" onClick={this.handleClickSeries} value={comic.series.resourceURI}>Add series to collection</button>
                         </div>
                     
                     </div>
