@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
     constructor() {
         super();
         this.state = {
-            searchComic: false,
+            searchComic: true,
             searchCharacter: false
         }
         this.searchComic = this.searchComic.bind(this);
@@ -37,22 +37,28 @@ class SearchBar extends React.Component {
     }
 
     searchComic() {
+        // change button style on click
+        document.getElementById('comic-button').classList.remove('button');
+        document.getElementById('comic-button').classList.add('button-clicked');
+        document.getElementById('character-button').classList.add('button');
+        document.getElementById('character-button').classList.remove('button-clicked');
         this.setState({
             searchComic: true,
             searchCharacter: false
         })
     }
 
-    searchCharacter() {
+    searchCharacter() {       
+        // change button style on click 
+        document.getElementById('comic-button').classList.add('button');
+        document.getElementById('comic-button').classList.remove('button-clicked');
+        document.getElementById('character-button').classList.remove('button');
+        document.getElementById('character-button').classList.add('button-clicked');
         this.setState({
             searchCharacter: true,
             searchComic : false
         })
     }
-
-
-
-
 
     render () {
         return (
@@ -60,9 +66,8 @@ class SearchBar extends React.Component {
             <div className="search-bar-container">
 
                 <div className="button-container">
-                
-                    <button onClick={() => this.searchComic()}>Search by Comic</button>
-                    <button onClick={() => this.searchCharacter()}>Search by Character</button>
+                    <button class="button" id="comic-button" onClick={() => this.searchComic()}>Search by Comic</button>
+                    <button class="button" id="character-button" onClick={() => this.searchCharacter()}>Search by Character</button>
                 </div>
 
                 {this.state.searchComic === true ? (
