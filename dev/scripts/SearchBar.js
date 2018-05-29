@@ -33,6 +33,7 @@ class SearchBar extends React.Component {
     handleSubmitByCharacter(e) {
         e.preventDefault();
         this.props.searchByCharacter();
+        this.props.history.push('/ComicResults');
     }
 
     searchComic() {
