@@ -158,10 +158,9 @@ class MyCollection extends React.Component {
           {this.state.comicCollection.map((item, i) => {
             return (
               <div key={i} className="collectionComicContainer">
-                <img
-                  src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`}
-                  alt=""
-                />
+                <a href={item.urls[0].url} target="_blank">
+                <img src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`} alt=""/>
+                </a>
                 <p className="comicTitle">{item.title}</p>
                 <button onClick={() => this.removeItem(item.key)} className="removeButton">X</button>
               </div>
@@ -173,10 +172,9 @@ class MyCollection extends React.Component {
           {this.state.seriesCollection.map((item, i) => {
             return (
               <div key={i} className="collectionComicContainer">
-                <img
-                  src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`}
-                  alt=""
-                />
+                <a href={item.urls[0].url} target="_blank">
+                <img src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`} alt="" />
+                </a>
                 <p className="comicTitle">{item.title}</p>
                 <button onClick={() => this.removeItem(item.key)} className="removeButton">X</button>
 
