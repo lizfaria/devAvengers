@@ -39,7 +39,8 @@ class ComicResults extends React.Component{
                 comicCart: "saved",
                 userId: user
             })
-    }
+        } else alert("Please Sign In")
+        
 }
 
     handleClickSeries(e) {
@@ -59,28 +60,10 @@ class ComicResults extends React.Component{
                 seriesCart: "saved",
                 userId: user
             })
-        }
-        // } else {
-        //     this.setState({ mustLogin: true })
-        // }
+        } else alert("Please Sign In")
+      
         }
 
-
-
-    // hide() {
-    //     this.setState({ mustLogin: false })
-    // }
-
-    // getUrl() {
-    //     console.log(`reached`);
-        
-    //     return this.props.comics.map((comic, i) => {
-    //                 console.log(comic.urls[0]);
-    //                 // return (
-    //                 //     comic.urls[0].url
-    //                 // )
-    //     })
-    // }
 
     getComic() {
            return this.props.comics.map((comic, i) => {
