@@ -8,6 +8,7 @@ import {
 import axios from 'axios';
 import CryptoJS from "crypto-js";
 import Header from './Header';
+import Footer from './Footer'
 import ComicResults from './ComicResults';
 import SearchBar from './SearchBar';
 import MyCollection from './MyCollection';
@@ -67,7 +68,7 @@ class App extends React.Component {
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           titleStartsWith: this.state.search,
-          limit: 4
+          limit: 12
         }
       })
       .then(res => {
@@ -88,7 +89,7 @@ class App extends React.Component {
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
           name: this.state.search,
-          limit: 4
+          limit: 12
         }
       })
       .then(res => {
@@ -104,7 +105,7 @@ class App extends React.Component {
           ts: ts,
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
           hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
-          limit: 4
+          limit: 12
         }
         }).then(res => {
           // console.log(res);
@@ -132,6 +133,7 @@ class App extends React.Component {
           />} />
 
           <Route path="/MyCollection" component={MyCollection} />    
+          <Footer />
         </div>
       </Router>
     );

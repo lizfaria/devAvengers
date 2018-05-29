@@ -2,7 +2,7 @@ import React from 'react';
 
 const ComicTitle= (props) => {
     return (
-        <p>{props.title}</p>
+        <p className="comicTitle">{props.title}</p>
     )
 }
 

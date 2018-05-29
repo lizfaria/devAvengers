@@ -15,8 +15,8 @@ class ComicResults extends React.Component{
         this.state = {
             // collection: [],
             id: '',
-            comicCart: 'Add comic to my collection',
-            seriesCart: 'Add series to my collection'
+            comicCart: 'Add Comic to Collection',
+            seriesCart: 'Add Series to Collection'
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleClickSeries = this.handleClickSeries.bind(this);
@@ -90,10 +90,12 @@ class ComicResults extends React.Component{
                                 writers= {item.name} key={n}/>
                             )
                         })} */}
-                       
-                        <button className="cart" onClick={this.handleClick} value={comic.id}>{this.state.comicCart}</button>
-                    
-                        <button className="cart" onClick={this.handleClickSeries} value={comic.series.resourceURI}>{this.state.seriesCart}</button>
+
+                        <div className="addToCollection">
+                            <button className="cart cartComic" onClick={this.handleClick} value={comic.id}>{this.state.comicCart}</button>
+                        
+                            <button className="cart cartSeries" onClick={this.handleClickSeries} value={comic.series.resourceURI}>{this.state.seriesCart}</button>
+                        </div>
                     
                     </div>
                 )
