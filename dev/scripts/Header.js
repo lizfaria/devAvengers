@@ -1,10 +1,10 @@
-import React from 'react';
-import firebase from 'firebase';
+import React from "react";
+import firebase from "firebase";
 import {
     BrowserRouter as Router,
     Route,
     Link
-} from 'react-router-dom';
+    } from "react-router-dom";
 
 class Header extends React.Component {
     constructor() {
@@ -19,12 +19,12 @@ class Header extends React.Component {
         });
     };
 
+    //Check if user is logged in and affect the rendering accordingly (sign in/sign out)
     componentDidMount() {
-        this.dbRef = firebase.database().ref('collection');
+        this.dbRef = firebase.database().ref("collection");
         firebase.auth().onAuthStateChanged((user) => {
             if (user !== null) {
-                const uid = user.uid;
-                this.dbRef.on('value', (snapshot) => {
+                this.dbRef.on("value", (snapshot) => {
                 });
                 this.setState({
                     loggedIn: true
@@ -36,24 +36,20 @@ class Header extends React.Component {
             }
         });
     }
-
     
+    //Firebase function to login with Google
     loginWithGoogle() {
-        console.log("clicked the button")
         const provider = new firebase.auth.GoogleAuthProvider
 
         firebase.auth().signInWithPopup(provider)
             .then((user) => {
-                // console.log(user);
             })
             .catch((err) => {
-                // console.log(err);
             })
     }
     logOut() {
         firebase.auth().signOut();
-        this.dbRef.off('value');
-        // console.log('signout')
+        this.dbRef.off("value");
     }
 
     render() {
@@ -64,14 +60,14 @@ class Header extends React.Component {
                     <Link to="/"><img id="bnw" src="../../assets//marvel.png" width="200"></img></Link>
                 </div>
                 <div className="nav-container clearfix">
-                    <div className="userStatus">
-                        {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>sign in</button>}
-                        {this.state.loggedIn === true ? <button onClick={this.logOut}>sign out</button> : null}
-                    </div>
                     <div className="bookmark-container">
                         <Link to="/MyCollection">
-                            my collection
+                            My Collection
                         </Link>
+                    </div>
+                    <div className="userStatus">
+                        {this.state.loggedIn === false && <button onClick={this.loginWithGoogle}>Log In</button>}
+                        {this.state.loggedIn === true ? <button onClick={this.logOut}>Log Out</button> : null}
                     </div>
                 </div>
             </div>
