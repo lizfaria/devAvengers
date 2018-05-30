@@ -1,218 +1,162 @@
 @import '_setup.scss';
 @import '_typography.scss';
-@import '_header.scss';
-// @import 'components/typography.scss';
-
-$header-font: 'Oswald', sans-serif;
-$body-font: 'Source Sans Pro', sans-serif;
+@import 'components/_header.scss';
+@import 'components/_footer.scss';
+@import 'components/_comicResults.scss';
+@import 'components/_myCollection.scss';
 
 
 .wrapper {
     width: 85%;
     margin: 0 auto;
-    // background: #fafa;
 }
+
+//-----------------
+// MAIN PAGE STYLES
+//-----------------
+
 .mainPage {
+    height: 95vh;
+    width: 100vw;
     background: linear-gradient(to bottom, rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(../../assets/Deadpool-Wallpaper-1920x1080.jpg);
     background-size: cover;
     background-position: center;
-    width: 100vw;
-    height: 100vh;
 }
 
 .search-bar-container {
-    position:relative;
-    max-width: 900px;
-    top:50vh;
+    max-width: 60%;
     margin:0 auto;
+    padding-top: 50vh;
+    border-radius: 20px 20px 20px 20px;
+
     font-family: $header-font;
     color:white;
-    border-radius: 20px 20px 20px 20px;
-    padding: 0;
-    
     input[type='text'] {
-        font-size:2rem;
-        color:white;
-        border:0;
-        padding:0;
         width:85%;
         height:60px;
-        float:left;
-        margin: 0;
-        background:none;
-        border-radius: 0 0 0 20px;
-        background-color:rgba(0,0,0,0.8);
-        text-align:left;
-        transition: all .3s ease-in-out;
         padding: 0 0 0 10px; 
+        margin: 0;
+        border:none;
+        border-radius: 0 0 0 20px;
+        float:left;
+
+        font-size:2rem;
+        text-align:left;
+
+        color:white;
+        background:none;
+        background-color:rgba(0,0,0,0.8);
+
+        transition: all .3s ease-in-out;
     }
     input[type='submit'] {
-        float:left;
         width:15%;
         height:60px;
         padding: 5px;
+        border: none;
+        border-radius: 0 0 20px 0;   
+        float:left;
+
         background-image: url('../../assets/search.svg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
         background-color:rgba(0,0,0,0.8);
-        max-width:100%;
-        border-radius: 0 0 20px 0;   
     }
-    input[type='radio'] {
-        clear:both;
-        text-align:Center;
-    }
-
 }
 
 .button-container {
     width:100%;
     .button {
         height:45px;
-        background: whitesmoke;
-        // border-radius: 20px;
-        font-family: $header-font;
-        color: black;
-        font-size: 2rem;
+        width:50%;
+        border: none;
         border-bottom: 2px solid $red;
         border-radius: 20px 20px 0 0;
+
+        font-family: $header-font;
+        font-size: 2rem;
+
+        background: whitesmoke;
+        color: black;
         transition: all .3s ease-in-out;
-        width:50%;
         &:hover {
             background-color: $red;
             color: whitesmoke;
-            border: 1px solid red;
         }
     }
     .button-clicked {
         height:45px;
-        background: red;
-        // border-radius: 20px;
-        font-family: $header-font;
-        color: whitesmoke;
-        font-size: 2rem;
-        border: 2px solid $red;
-        border-radius: 20px 20px 0 0;
-        transition: all .3s ease-in-out;
         width:50%;
+        border: none;
+        border-bottom: 2px solid $red;
+        border-radius: 20px 20px 0 0;
+
+        font-family: $header-font;
+        font-size: 2rem;
+
+        background: red;
+        color: whitesmoke;
+        
+        transition: all .3s ease-in-out;
     }
 }
 
-.comicForm {
-    text-align: center;
+//-------------------------
+// RESPONSIVE MEDIA QUERIES
+//-------------------------
+
+@media only screen and (max-width: 1150px) {
+    .button-container {
+        .button, .button-clicked{
+            font-size: 1.4rem;
+        }
+    }
+
+    .search-bar-container {
+        input[type='text'] {
+        font-size:1.4rem;
+        height:50px;
+        }
+        input[type='submit'] {
+        height:50px;
+        }
+    }
 }
 
-.characterForm {
-    text-align: center;
+@media only screen and (max-width: 1000px) {
+    .search-bar-container {
+        min-width: 100%;
+    }
 }
 
-input.homeSearch {
-    width: 250px;
-    height: 30px;
-    margin-right: 1%;
-    border: none;
+@media only screen and (max-width: 850px) {
+    .mainPage {
+        height: 92vh;
+    }
 }
 
-input.homeSubmit {
-    width: 150px;
-    height: 30px;
-    border: none;
+@media only screen and (max-width: 525px) {
+    .wrapper {
+        width: 90%;
+    }
+    .button-container{
+        margin-bottom: 5%;
+        .button, .button-clicked {
+            width: 100%;
+            border-radius: 0;
+            border: none;
+        }
+    }
+    .search-bar-container {
+        input[type='text'] {
+        border-radius: 0;
+        }
+        input[type='submit'] {
+        border-radius: 0;
+        }
+    }
 }
 
-// COMIC RESULTS STYLES
 
-.comicResults {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../../assets/8ae9728be2d1632fc6d92413738398da.gif);
-    padding-top: 15%;
-    min-height: 100vh;
-}
 
-.comicContainer {
-    width: calc((94% / 4));
-    margin-right: 2%;
-    min-height: 560px;
-    padding-top: 20px;
-    float: left;
-    margin-bottom: 3%;
-    background: rgba(0,0,0,0.7);
-    // filter: drop-shadow(30px 10px 4px white);
-    // border: 5px solid rgba(255,255,255,0.7);
-    text-align: center;
-    position: relative;
-}
-
-.comicContainer:nth-of-type(4n+4) {
-     margin-right: 0;
-}
-
-img.comicCover {
-    // box-shadow: 5px 10px #969696;
-    // width: 250px;
-    // height: 387px;
-    // object-fit: cover;
-}
-
-p.comicTitle {
-    font-family: $header-font;
-    @include remCalc(18);
-    color: white;
-    padding: 0 3%;
-}
-
-.addToCollection {
-    position: absolute;
-    bottom: 5px;
-}
-
-button.cart {
-    width: 200px;
-    height:40px;
-    margin-bottom: 5%;
-
-    border: none;
-    color: white;
-}
-
-button.cartComic {
-    background: $red;
-}
-
-button.cartSeries {
-    background: $navy;
-}
-
-// COMIC RESULTS STYLES
-
-.myCollection {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../../assets/8ae9728be2d1632fc6d92413738398da.gif);
-    padding-top: 15%;
-    min-height: 100vh;
-}
-
-.collectionComicContainer {
-    width: calc((94% / 4));
-    margin-right: 2%;
-    min-height: 500px;
-    padding-top: 20px;
-    float: left;
-    margin-bottom: 3%;
-    background: rgba(0,0,0,0.7);
-    // filter: drop-shadow(30px 10px 4px white);
-    // border: 5px solid rgba(255,255,255,0.7);
-    text-align: center;
-    position: relative;
-}
-
-.collectionComicContainer:nth-of-type(4n+4) {
-     margin-right: 0;
-}
-
-button.removeButton {
-    position: absolute;
-    bottom: 30px;
-    padding: 5px;
-    background: $red;
-    color: white;
-    border: none;
-}

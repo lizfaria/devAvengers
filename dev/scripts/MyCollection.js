@@ -1,14 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Link
-} from 'react-router-dom';
-import firebase from 'firebase';
-import axios from 'axios';
+  } from "react-router-dom";
+import firebase from "firebase";
+import axios from "axios";
 import CryptoJS from "crypto-js";
+
 // Initialize Firebase
-var config = {
+const config = {
   apiKey: "AIzaSyB0OyrwC2Tvi-SxHX3LGJm0Iw7xuJONaNY",
   authDomain: "devavengers-f4922.firebaseapp.com",
   databaseURL: "https://devavengers-f4922.firebaseio.com",
@@ -17,11 +18,14 @@ var config = {
   messagingSenderId: "886807267915"
 };
 firebase.initializeApp(config);
+
+//Alernate keys
 // const PUBLIC_KEY = "a7cf3b7902087aaf6031f05fab9fb738";
 // const PRIV_KEY = "442fd6fb50eb89717021a29e0c676e785f2687a5";
 const PUBLIC_KEY = "aaacd28ae7e7c4de56a90d65adee65a8";
 const PRIV_KEY = "8b0a41f0c34d95256e4336a09ed5d4e830173846";
 const ts = new Date().getTime();
+
 class MyCollection extends React.Component {
   constructor() {
     super();
@@ -29,9 +33,10 @@ class MyCollection extends React.Component {
       myCollection: [],
       comicCollection: [],
       seriesCollection: [],
-      userId: ''
+      userId: ""
     };
   }
+
   //axios call that uses the comic ids from comicIds and stores in array called comicRequests(array of promises)
   getComic(id) {
     return axios.get(`http://gateway.marvel.com/v1/public/comics/${id}`, {
@@ -39,10 +44,10 @@ class MyCollection extends React.Component {
         ts: ts,
         apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
         hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
-        limit: 4
       }
     });
   }
+
   //axios call that uses the series ids from seriesIds and stores in array called seriesRequests(array of promises)
   getSeries(id) {
     return axios.get(`http://gateway.marvel.com/v1/public/series/${id}`, {
@@ -50,15 +55,17 @@ class MyCollection extends React.Component {
         ts: ts,
         apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
         hash: CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString(),
-        limit: 4
       }
     });
   }
+
+  //Show collection only if user is signed in, otherwise ask user to sign in
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         const dbRef = firebase.database().ref(`collection/${user.uid}`);
 
+        //Show snapshot of firebase, push key into myCollection
         dbRef.on("value", snapshot => {
           const comicData = snapshot.val();
           const myCollection = [];
@@ -72,41 +79,41 @@ class MyCollection extends React.Component {
             userId: user.uid
           })
 
-          // console.log(myCollection);
-          //put id of each comic into an array called comicIds
           const comicIds = myCollection
-            .filter(item => item.id !== '')
+          //filter for ones with information (not empty strings)
+          .filter(item => item.id !== "")
+          //put id of each comic into an array called comicIds
             .map(item => {
-              // return item.id;
               return {
                 key: item.key,
                 id: item.id
               }
             });
-          // console.log(comicIds)
-          //put series ids into an array called seriesIds
-          const seriesIds = myCollection
-            .filter(item => item.series !== '')
+
+            const seriesIds = myCollection
+            //filter for ones with information (not empty strings)
+            .filter(item => item.series !== "")
+            //put series ids into an array called seriesIds
             .map(item => {
-              // return item.series;
               return {
                 key: item.key,
                 id: item.series
               }
             });
-          console.log(seriesIds)
+
           //Maps over comidIds array and passes each comic id into getComic function above
           const comicRequests = comicIds.map(item => {
             return this.getComic(item.id);
           });
+
           //Maps over seriesIds array and passes each series id into getSeries function above
           const seriesRequests = seriesIds.map(item => {
             return this.getSeries(item.id);
           });
-          //When you get all results return from API call, store int an array called comicCollection or series Collection.
+
+          //When all results return from API call, store into an array called comicCollection or seriesCollection.
           //Then, map over it and return me the first result in the array. 
           Promise.all(comicRequests).then(results => {
-            // console.log(results);
             const comicCollection = results.map(comic => {
               return comic.data.data.results[0];
             })
@@ -119,7 +126,6 @@ class MyCollection extends React.Component {
             });
           });
           Promise.all(seriesRequests).then(results => {
-            // console.log(results);
             const seriesCollection = results.map(series => {
               return series.data.data.results[0];
             })
@@ -127,28 +133,20 @@ class MyCollection extends React.Component {
                 series.key = seriesIds[i].key
                 return series
               })
-            console.log(seriesCollection);
             this.setState({
               seriesCollection: seriesCollection
             });
           });
-
         });
       } else alert("Please sign in.")
-
     })
-    
   }
-  //method to remove collection
+
+  //method to remove collection item from a specific authenticated users collection
   removeItem(key) {
     firebase.database().ref(`collection/${this.state.userId}/${key}`).remove()
   }
 
-
-  //go to firebase database
-  // find all children of collection
-  // find any grandchild of collection whose value matches the series id or issue id
-  // child, parent methods
   render() {
     return (
       <div className="myCollection">
@@ -162,7 +160,7 @@ class MyCollection extends React.Component {
                 <img src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`} alt=""/>
                 </a>
                 <p className="comicTitle">{item.title}</p>
-                <button onClick={() => this.removeItem(item.key)} className="removeButton">X</button>
+                <button onClick={() => this.removeItem(item.key)} className="removeButton">Remove From Collection</button>
               </div>
             );
           })}
@@ -176,8 +174,7 @@ class MyCollection extends React.Component {
                 <img src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`} alt="" />
                 </a>
                 <p className="comicTitle">{item.title}</p>
-                <button onClick={() => this.removeItem(item.key)} className="removeButton">X</button>
-
+                <button onClick={() => this.removeItem(item.key)} className="removeButton">Remove From Collection</button>
               </div>
             );
           })}

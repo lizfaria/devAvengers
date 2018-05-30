@@ -1,0 +1,100 @@
+//---------------------
+// MY COLLECTION STYLES
+//---------------------
+
+.myCollection {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../../assets/8ae9728be2d1632fc6d92413738398da.gif);
+    padding-top: 130px;
+    min-height: 95vh;
+}
+
+.collectionComicContainer {
+    width: calc((94% / 4));
+    min-height: 540px;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    padding-top: 20px;
+
+    text-align: center;
+
+    background: rgba(0,0,0,0.7);
+
+    float: left;
+    position: relative;
+}
+
+.collectionComicContainer:nth-of-type(4n+4) {
+     margin-right: 0;
+}
+
+button.removeButton {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+
+    width: 216px;
+    height:40px;
+    margin: 0 auto 5%;
+    border: none;
+
+    color: white;
+    background: $navy;
+    &:hover {
+    background: lighten($navy,5%)
+    }
+}
+
+//-------------------------
+// RESPONSIVE MEDIA QUERIES
+//-------------------------
+
+//Grid goes to 3 columns
+@media only screen and (max-width: 1250px) {
+    .collectionComicContainer {
+        width: calc((94% / 3));
+    }
+
+    .collectionComicContainer:nth-of-type(3n+3) {
+        margin-right: 0;
+}
+}
+
+//Grid goes to 2 columns
+@media only screen and (max-width: 950px) {
+    .collectionComicContainer {
+        width: calc((94% / 2));
+    }
+
+    .collectionComicContainer:nth-of-type(2n+2) {
+        margin-right: 0;
+}
+}
+
+@media only screen and (max-width: 850px) {
+    .myCollection {
+        min-height: 92vh;
+    }
+}
+
+//Grid goes to 1 column
+@media only screen and (max-width: 650px) {
+
+    //Added to get rid of ghost space that was showing up between comicResults & Footer
+    .myCollection {
+       padding-bottom: 0.1%;
+    }
+    
+    .collectionComicContainer {
+        width: 290px;
+        min-height: 580px;
+        float: none;
+        background: rgba(0,0,0,0.7);
+        text-align: center;
+        position: relative;
+    }
+
+    .collectionComicContainer:nth-of-type(n) {
+        margin: 0 auto 3%;
+    }  
+}

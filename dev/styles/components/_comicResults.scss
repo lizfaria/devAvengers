@@ -1,0 +1,125 @@
+//---------------------
+// COMIC RESULTS STYLES
+//---------------------
+
+.comicResults {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../../assets/8ae9728be2d1632fc6d92413738398da.gif);
+    padding-top: 130px;
+    min-height: 95vh;
+}
+
+.comicContainer {
+    width: calc((94% / 4));
+    min-height: 580px;
+    padding-top: 20px;
+    margin-bottom: 3%;
+    margin-right: 2%;
+
+    text-align: center;
+    
+    background: rgba(0,0,0,0.7);
+
+    float: left;
+    position: relative;
+}
+
+.comicContainer:nth-of-type(4n+4) {
+     margin-right: 0;
+}
+
+p.comicTitle {
+    width: 216px;
+    margin: 0 auto;
+
+    font-family: $header-font;
+    @include remCalc(18);
+
+    color: white;
+}
+
+.addToCollection {
+    position: absolute;
+    bottom: 5px;
+}
+
+button.cart {
+    width: 216px;
+    height:40px;
+    margin-bottom: 5%;
+
+    border: none;
+    color: white;
+}
+
+button.cartComic {
+    background: $red;
+    transition: all ease-in-out 0.3s;
+    &:hover {
+    background: lighten($red,10%)
+    }
+}
+
+button.cartSeries {
+    background: $navy;
+    transition: all ease-in-out 0.3s;
+    &:hover {
+    background: lighten($navy,5%)
+    }
+}
+
+//-------------------------
+// RESPONSIVE MEDIA QUERIES
+//-------------------------
+
+//Grid goes to 3 columns
+@media only screen and (max-width: 1250px) {
+    .comicContainer {
+        width: calc((94% / 3));
+    }
+
+    .comicContainer:nth-of-type(3n+3) {
+        margin-right: 0;
+}
+}
+
+//Grid goes to 2 columns
+@media only screen and (max-width: 950px) {
+    .comicContainer {
+        width: calc((94% / 2));
+    }
+
+    .comicContainer:nth-of-type(2n+2) {
+        margin-right: 0;
+}
+}
+
+@media only screen and (max-width: 850px) {
+    .comicResults {
+        min-height: 92vh;
+    }
+}
+
+//Grid goes to 1 column
+@media only screen and (max-width: 650px) {
+
+    //Added to get rid of ghost space that was showing up between comicResults & Footer
+    .comicResults {
+       padding-bottom: 0.1%;
+    }
+    
+    .comicContainer {
+        width: 290px;
+        min-height: 580px;
+        float: none;
+        background: rgba(0,0,0,0.7);
+        text-align: center;
+        position: relative;
+    }
+
+    .comicContainer:nth-of-type(n) {
+        margin: 0 auto 3%;
+    }
+}
+
+
+
