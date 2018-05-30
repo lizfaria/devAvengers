@@ -1,0 +1,87 @@
+//--------------
+// FOOTER STYLES
+//--------------
+
+footer {
+    height: 6vh;
+    width: 100%;
+    
+    text-align: center;
+
+    background: #222;
+    color: lighten($grey, 20%);
+    p {
+        width: 47.5%;
+        font-family: $body-font;
+        @include remCalc(18);
+        float: left;
+        a {
+            text-decoration: none;
+            color: lighten($grey, 20%);
+            transition: all ease-in-out 0.3s;
+        }
+        a:hover {
+            color: whitesmoke;
+        }
+        span {
+            color: $red;
+        }
+    }
+}
+
+p.developers {
+    text-align: left;
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
+p.attribution {
+    text-align: right;
+    margin: 0;
+    padding: 8px 0 0 0;
+}
+
+
+.daredevilContainer {
+    height: 100%;
+    width: 5%;
+
+    text-align: center;
+    padding-top: 5px;
+
+    float: left;
+    img.daredevil {
+        width: 30px;
+        object-fit: cover;
+    }
+}
+
+//-------------------------
+// RESPONSIVE MEDIA QUERIES
+//-------------------------
+
+@media only screen and (max-width: 1440px) {
+    footer {
+        p {
+            @include remCalc(18);
+        }
+    }
+}
+
+@media only screen and (max-width: 850px) {
+        footer {
+            height: 8vh;
+            p.developers, p.attribution {
+                width: 100%;
+                padding: 0;
+
+                text-align: center;
+                @include remCalc(16);
+                
+                clear: both;
+            } 
+        }
+        .daredevilContainer {
+            display: none;
+        }
+}
