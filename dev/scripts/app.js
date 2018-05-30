@@ -44,7 +44,7 @@ class App extends React.Component {
   searchByComic() {
     //API call for seach by comic
     axios
-      .get("http://gateway.marvel.com/v1/public/comics", {
+      .get("https://gateway.marvel.com/v1/public/comics", {
         params: {
           ts: ts,
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
@@ -63,7 +63,7 @@ class App extends React.Component {
   searchByCharacter() {
     //API call for seach by character
     axios
-      .get("http://gateway.marvel.com/v1/public/characters", {
+      .get("https://gateway.marvel.com/v1/public/characters", {
         params: {
           ts: ts,
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
@@ -78,7 +78,7 @@ class App extends React.Component {
             characterId: result.id
           }) 
         })
-        axios.get(`http://gateway.marvel.com/v1/public/characters/${this.state.characterId}/comics`, {
+        axios.get(`https://gateway.marvel.com/v1/public/characters/${this.state.characterId}/comics`, {
         params: {
           ts: ts,
           apikey: "aaacd28ae7e7c4de56a90d65adee65a8",

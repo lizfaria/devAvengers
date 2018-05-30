@@ -39,7 +39,7 @@ class MyCollection extends React.Component {
 
   //axios call that uses the comic ids from comicIds and stores in array called comicRequests(array of promises)
   getComic(id) {
-    return axios.get(`http://gateway.marvel.com/v1/public/comics/${id}`, {
+    return axios.get(`https://gateway.marvel.com/v1/public/comics/${id}`, {
       params: {
         ts: ts,
         apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
@@ -50,7 +50,7 @@ class MyCollection extends React.Component {
 
   //axios call that uses the series ids from seriesIds and stores in array called seriesRequests(array of promises)
   getSeries(id) {
-    return axios.get(`http://gateway.marvel.com/v1/public/series/${id}`, {
+    return axios.get(`https://gateway.marvel.com/v1/public/series/${id}`, {
       params: {
         ts: ts,
         apikey: "aaacd28ae7e7c4de56a90d65adee65a8",
